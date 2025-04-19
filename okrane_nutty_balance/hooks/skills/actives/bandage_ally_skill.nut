@@ -23,7 +23,7 @@
 		local target = _targetTile.getEntity();
 		if (!this.m.IsSpent)
 		{
-			target.setHitpoints(this.Math.floor(target.getHitpoints() + 15));	
+			target.setHitpoints(this.Math.floor(target.getHitpoints() + 20));	
 			this.m.IsSpent = true;
 		}
 		return __original(_user, _targetTile);
