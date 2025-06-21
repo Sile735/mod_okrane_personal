@@ -13,7 +13,11 @@
 			if (item != null && item.isItemType(::Const.Items.ItemType.Tool))
 			{
 				return 0;
-			}
+			};
+			if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Dagger, true, true))
+			{
+				return 0;
+			};
 		}
 	}}.getItemActionCost;
 
