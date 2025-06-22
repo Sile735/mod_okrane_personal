@@ -20,8 +20,8 @@
 
 	 	if (this.getContainer().getActor().getSkills().hasSkill("effects.rf_medic"))
 		{
-			mint = this.Math.max(1, times.Min - 1);
-			maxt = this.Math.max(1, times.Max - 1);
+			mint = this.Math.max(1, mint - 1);
+			maxt = this.Math.max(1, maxt - 1);
 		}
 
 		return {
