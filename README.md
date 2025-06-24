@@ -37,6 +37,8 @@ Fencing Swords - no longer have a 20% penalty to hit.
 
 All Tool type items (bombs and nets) now have 0ap cost to swap to, 1 time per turn. 
 
+Added Staggered condition to increase dmg of Deathblow.
+
 # Requirements
 
 - Modern Hooks
