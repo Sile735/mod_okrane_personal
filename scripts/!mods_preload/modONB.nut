@@ -1,7 +1,7 @@
 ::modONB <- {
 	ID = "mod_ONB",
 	Name = "Okrane's Nutty Balance",
-	Version = "0.2.0",
+	Version = "0.3.0",
 	// GitHubURL = "https://github.com/YOURNAME/mod_MODID",
 }
 
