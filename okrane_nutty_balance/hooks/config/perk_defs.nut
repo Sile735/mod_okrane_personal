@@ -10,7 +10,8 @@
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Injuries heal [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] day faster",
-					"Recovers [color=" + this.Const.UI.Color.PositiveValue + "]10[/color] Hitpoints after each battle"
+					"Recovers [color=" + this.Const.UI.Color.PositiveValue + "]15[/color] Hitpoints after each battle"
+					"Recovers [color=" + this.Const.UI.Color.PositiveValue + "]5[/color] Hitpoints each turn"
 				]
 			},
 			{

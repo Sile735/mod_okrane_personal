@@ -1,0 +1,3 @@
+<brush name="gfx/icons.png" version ="17">
+	<sprite id="icon_medic" ic="FF495E75" img="icons\medic_effect_small.png" />
+</brush>
