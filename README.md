@@ -24,8 +24,9 @@ Based on Reforged Mod.
 - New Perk - Medic
 
 * available in Trained perk tree at level 1.
-* heals 10hp after every battle
+* heals 15hp after every battle
 * injuries take 1 less day to heal
+* regenerates the character 5hp every turn
 * grants active skill: bandage ally
 * bandage ally now heals a target for 20hp the first time it is used in combat
 

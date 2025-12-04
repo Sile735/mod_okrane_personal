@@ -44,13 +44,13 @@ this.medic_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/special.png",
+				icon = "ui/icons/days_wounded.png",
 				text = "Recovers [color=" + this.Const.UI.Color.PositiveValue + "]15[/color] Hitpoints after each battle"
 			},
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/special.png",
+				icon = "ui/icons/days_wounded.png",
 				text = "Recovers [color=" + this.Const.UI.Color.PositiveValue + "]5[/color] Hitpoints each turn"
 			}
 		];
