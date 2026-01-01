@@ -1,56 +1,76 @@
-# Description
+# Personal Mod (Based on Reforged Mod)
 
-This mod is my personal mod where I add things for my enjoyment.
-Based on Reforged Mod.
+This mod is my personal project for added enjoyment. It’s based on the Reforged Mod.
 
-# List of all Changes
+---
 
-- Hitpoint level up values from 2-4 -> 3-5
+## Changes
 
-- Bags and Belts - removed the restriction for Two Handed Weapons
+- **Hitpoint level-up values**
+  - Increased from 2–4 → 3–5
 
-- Quick Hands:
+- **Bags and Belts**
+  - Removed restriction for Two-Handed Weapons
 
-* now part of the General Perk Tree
+- **Quick Hands**
+  - Now part of the General Perk Tree  
+  - No longer restricted to any weapon type (shields and two-handed weapons are re-included)
 
-* no longer has any restriction to any kind of weapon (i.e. shields and two handed weapons re-included)
+- **Survival Instinct**
+  - Added **+5 hitpoints**
 
-- Survival Instinct - added +5 hitpoints
+- **Nine Lives**
+  - Added **+10 hitpoints**
 
-- Nine Lives - added +10 hitpoints
+- **Resilient**
+  - Now grants **Immunity to Root**  
+  - Added **+5 hitpoints**
 
-- Resilient - added Immune to Root and +5 hitpoints
+- **New Perk: Medic**
+  - Available in the Trained perk tree at level 1  
+  - Heals **15 HP after every battle**  
+  - Injuries take **1 day less** to heal  
+  - Regenerates **5 HP per turn**  
+  - Grants active skill: **Bandage Ally**  
+  - **Bandage Ally** now heals the target for **20 HP** the first time it is used in combat
 
-- New Perk - Medic
+- **Perk Groups**
+  - **Fast Perk Group** now includes **Pathfinder** at Tier 2  
+  - **Trained Perk Group** currently has no Tier 2 perk (previously **Quick Hands** — potential future addition)
 
-* available in Trained perk tree at level 1.
-* heals 15hp after every battle
-* injuries take 1 less day to heal
-* regenerates the character 5hp every turn
-* grants active skill: bandage ally
-* bandage ally now heals a target for 20hp the first time it is used in combat
+- **Fencing Swords**
+  - Removed **20% hit penalty**
 
-- Fast Perk Group now has Pathfinder at Tier 2.
+- **Tool Items (bombs, nets, etc.)**
+  - Now have **0 AP cost to swap**, once per turn
 
-- Trained Perk Group now has nothing at Tier 2 ( this is where Quick Hands was - maybe we can add something here )
+- **Staggered Condition**
+  - Now increases **Deathblow** damage
 
-- Fencing Swords - no longer have a 20% penalty to hit.
+- **Net Pull (Angler Perk)**
+  - Range increased to **3**
 
-- All Tool type items (bombs and nets) now have 0ap cost to swap to, 1 time per turn. 
+- **Supporter Perk Rework**
+  - No longer refunds any Action Points  
+  - **Encourage** can target any ally within range **2** whose morale is lower or equal to the Supporter  
+  - **Encourage** triggers a **positive morale check** on the target  
+  - **Encourage** grants the target **+3 Action Points**
 
-- Added Staggered condition to increase dmg of Deathblow.
+---
 
-- The Net Pull Skill from the Perk Angler is now Range 3
+## Requirements
 
-- Encourage skill from the Supporter Perk, now can target Fleeing Allies
+- **Modern Hooks**  
+- **Modding Standards and Utilities (MSU)**
 
-# Requirements
+---
 
-- Modern Hooks
-- Modding Standards and Utilities (MSU)
+## Known Issues
 
-# Known Issues:
+_None currently reported._
 
-# Compatibility
+---
 
-- Is safe to remove from- and add to any existing savegames
+## Compatibility
+
+This mod is **safe to remove from** or **add to existing savegames**.

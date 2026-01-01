@@ -78,3 +78,16 @@ local hold_out = {
 	 	})
 	};
 ::UPD.setDescription(hold_out.ID, hold_out.Key, ::Reforged.Mod.Tooltips.parseString(hold_out.Description));
+
+local supporter = ::UPD.getDescription({
+		Fluff = "I\'ve got your back!",
+		Effects = [			
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Gain the [$ $|Skill+rf_encourage_skill] skill which allows you to increase the [morale|Concept.Morale] of an ally and grant them extra [Action Point|Concept.ActionPoints]"
+				]
+			}
+		]
+	})
+::UPD.setDescription("perk.rf_supporter", "Supporter", ::Reforged.Mod.Tooltips.parseString(supporter.Description));
