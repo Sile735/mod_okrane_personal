@@ -7,7 +7,7 @@
 		this.m.Tree = [
 			["perk.bags_and_belts"],
 			["perk.quick_hands"],
-			[],
+			["perk.fortified_mind"],
 			[],
 			[],
 			[],
