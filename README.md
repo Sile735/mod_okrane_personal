@@ -33,6 +33,7 @@ This mod is my personal project for added enjoyment. It’s based on the Reforge
   - Regenerates **5 HP per turn**  
   - Grants active skill: **Bandage Ally**  
   - **Bandage Ally** now heals the target for **20 HP** the first time it is used in combat
+  - **Bandage Ally** also treats an injury if used up to **2** turns after the injury was received (stolen from Hardened)
 
 - **Perk Groups**
   - **Fast Perk Group** now includes **Pathfinder** at Tier 2  
