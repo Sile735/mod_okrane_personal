@@ -17,7 +17,7 @@
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the Bandage Ally skill."
+					"Unlocks the [$ $|Skill+bandage_ally_skill] skill."
 				]
 			}
 		]

@@ -73,9 +73,20 @@
 		if (morale_bonus > 0){
 			_targetTile.getEntity().checkMorale(morale_bonus, this.getEncourageBonus(), ::Const.MoraleCheckType.Default);		
 		}
-		local encouraged_effect = ::new("scripts/skills/effects/ok_encouraged_effect");
-		encouraged_effect.m.IsInEffect = true;
-		_targetTile.getEntity().getSkills().add(encouraged_effect);
+		
+		local skill = _targetTile.getEntity().getSkills().getSkillByID("effects.encouraged_effect_buff");
+		if (skill != null)
+		{			
+			skill.m.IsInEffect = true;	
+			::logInfo("Already Has Skill - toggling it on " + _targetTile.getEntity());			
+		}
+		else{		
+			local encouraged_effect = ::new("scripts/skills/effects/ok_encouraged_effect");
+			encouraged_effect.m.IsInEffect = true;
+			_targetTile.getEntity().getSkills().add(encouraged_effect);
+			::logInfo("Added Encouraged Effect to " + _targetTile.getEntity())
+		}
+
 		this.m.IsSpent = true;
 		return true;
 	}

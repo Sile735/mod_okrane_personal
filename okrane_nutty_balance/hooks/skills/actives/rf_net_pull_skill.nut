@@ -12,7 +12,11 @@
 		if (tile == null){
 			return null;
 		}
-		return __original(_userTile, tile);
+		local second_tile = __original(_userTile, tile);
+		if (second_tile == null){
+			return tile;
+		}
+		return second_tile;
 	}
 	
 }); 
