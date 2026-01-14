@@ -9,9 +9,9 @@
 			["perk.pathfinder"],
 			[],
 			["perk.rf_dynamic_duo"],
-			["perk.rf_combo"],
+			["perk.rf_calculated_strikes"],
 			["perk.overwhelm"],
-			["perk.rf_calculated_strikes"]
+			["perk.rf_combo"]
 		];		
 	}
 });
