@@ -1,4 +1,8 @@
 ::modONB.HooksMod.hook("scripts/skills/actives/rf_encourage_skill", function(q) {
+
+	
+	q.m.ActionPointCostPenalty <- 2;
+	q.m.AttackPenaltyInEffect <- false;
 	
 	q.getTooltip = @(__original) function()
 	{
@@ -34,6 +38,13 @@
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Target gains 3 [Action Point|Concept.ActionPoints]")
+			}
+
+			{
+				id = 16,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Cannot be used after attacking. Subsequent attacks in the same turn cost " + ::MSU.Text.colorNegative(2) + " more [Action Point|Concept.ActionPoints]")
 			}
 		]);
 
@@ -88,7 +99,57 @@
 		}
 
 		this.m.IsSpent = true;
+		this.m.AttackPenaltyInEffect = true;
 		return true;
+	}
+
+
+
+	q.onAnySkillExecutedFully = @(__original) function( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (_skill.m.IsWeaponSkill)
+		{
+			this.m.IsSpent = true;
+		}
+		return __original( _skill, _targetTile, _targetEntity, _forFree );
+	}
+
+	q.onAfterUpdate = @(__original) function( _properties )
+	{
+		local actor = this.getContainer().getActor();
+		local applyEffect = this.m.AttackPenaltyInEffect;
+
+		// When previewing a skill while already in effect, we want to show the effect will be lost
+		// If not already in effect, we want to show that the effect will be available after the previewed skill is used
+		if (actor.isPreviewing() && actor.getPreviewSkill() != null)
+		{
+			applyEffect = !this.m.AttackPenaltyInEffect && actor.getPreviewSkill().getActionPointCost() != 0;
+		}
+
+		if (applyEffect)
+		{
+			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
+			{
+				if (skill.m.IsWeaponSkill)
+				{
+					skill.m.ActionPointCost += this.m.ActionPointCostPenalty;
+				}
+			}
+		}
+
+		return __original(_properties);
+	}
+
+	q.onTurnEnd = @(__original)function()
+	{
+		this.m.AttackPenaltyInEffect = false;
+		__original();
+	}
+
+	q.onCombatFinished = @(__original) function()
+	{		
+		this.m.AttackPenaltyInEffect = false;
+		__original();
 	}
 		
 }); 

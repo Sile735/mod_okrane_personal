@@ -1,6 +1,7 @@
 this.ok_encouraged_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		BonusActionPoints = 3,
+		BonusActionPoints = 3,		
+		ActionPointCostPenalty = 2
 		IsInEffect = false,
 		IsStartingTurn = false
 	},

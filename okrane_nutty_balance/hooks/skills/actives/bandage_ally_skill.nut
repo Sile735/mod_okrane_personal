@@ -118,8 +118,13 @@
 			return __original(_originTile, _targetTile);
 		}
 
-		local target = _targetTile.getEntity();	
-		if (!this.getContainer().getActor().isAlliedWith(target)) return false;
+		if (_targetTile.IsOccupiedByActor){
+			local target = _targetTile.getEntity();	
+			if (!this.getContainer().getActor().isAlliedWith(target)) return false;
+		}
+		else {
+			return false;
+		}
 
 		return true;
 	}
