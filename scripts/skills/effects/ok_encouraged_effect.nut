@@ -53,8 +53,7 @@ this.ok_encouraged_effect <- ::inherit("scripts/skills/skill", {
 	}
 
 	function onTurnStart()
-	{
-		
+	{		
 		this.m.IsStartingTurn = true;
 		if (this.m.IsInEffect){
 			this.spawnIcon("rf_inspiring_presence_buff_effect", this.getContainer().getActor().getTile());			

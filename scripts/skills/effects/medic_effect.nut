@@ -19,7 +19,7 @@ this.medic_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "\"Extensive knowledge of the body allows this brother to heal up faster after every battle.\"";
+		return "\"Extensive knowledge of the body allows this brother to heal up faster during and after every battle.\"";
 	}
 
 	function getTooltip()

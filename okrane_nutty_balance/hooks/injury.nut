@@ -1,4 +1,18 @@
 ::modONB.HooksMod.hook("scripts/skills/injury/injury", function(q) {
+
+	q.m.RoundAdded <- 0;
+
+	q.getName = @(__original) function()
+	{
+		local ret = __original();
+
+		if (this.isFresh() && !this.isTreated())
+		{
+			ret += " (Fresh)";
+		}
+
+		return ret;
+	}
 	
 	q.getHealingTime = @(__original) function()
 	{		
@@ -78,6 +92,37 @@
 		else
 		{
 			this.m.TimeApplied = this.Math.minf(this.Time.getVirtualTimeF(), this.m.TimeApplied + this.World.getTime().SecondsPerDay);
+		}
+	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+
+		if (this.isFresh() && !this.isTreated())
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Was received on [Round|Concept.Round] " + ::MSU.Text.colorPositive(this.m.RoundAdded)),
+			});
+		}
+
+		return ret;
+	}
+
+	// We need to implement this as hookTree, because some injuries might overwrite this without calling the base function
+	q.onAdded = @(__original) function()
+	{
+		__original();
+		if (::Tactical.isActive())
+		{
+			this.m.RoundAdded = ::Tactical.TurnSequenceBar.getCurrentRound();
+		}
+		else
+		{
+			this.m.IsFresh = false;
 		}
 	}
 
