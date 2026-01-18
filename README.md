@@ -56,6 +56,7 @@ This mod is my personal project for added enjoyment. It’s based on the Reforge
   - **Encourage** can target any ally within range **2** whose morale is lower or equal to the Supporter  
   - **Encourage** triggers a **positive morale check** on the target  
   - **Encourage** grants the target **+3 Action Points**
+  - **Encourage** cannot be used after attacking in a turn, and subsequent attacks after using Encourage in a turn cost 2 more Action Points.
 
 ---
 
