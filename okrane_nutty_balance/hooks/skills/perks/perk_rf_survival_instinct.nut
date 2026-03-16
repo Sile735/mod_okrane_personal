@@ -3,7 +3,7 @@
 	q.onAdded = @() function()
 	{		
 	 	local actor = this.getContainer().getActor();
-		actor.setHitpoints(this.Math.floor(actor.getHitpoints() + 10));			
+		actor.setHitpoints(this.Math.floor(actor.getHitpoints() + 5));			
 	}
 
 	q.onUpdate = @() function(_properties)
