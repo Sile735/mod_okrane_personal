@@ -58,6 +58,9 @@ This mod is my personal project for added enjoyment. It’s based on the Reforge
   - **Encourage** grants the target **+3 Action Points**
   - **Encourage** cannot be used after attacking in a turn, and subsequent attacks after using Encourage in a turn cost 2 more Action Points.
 
+- **Living Tree Shield** (crafted Schrat shield)
+  - Weighs **8** instead of 12 (-8 Maximum Fatigue)
+
 ---
 
 ## Requirements
