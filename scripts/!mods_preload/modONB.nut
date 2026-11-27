@@ -4,7 +4,7 @@
 ::modONB <- {
 	ID = "mod_ONB",
 	Name = "Okrane's Nutty Balance",
-	Version = "0.6.0",	// keep in sync with the GitHub release tag
+	Version = "0.6.1",	// keep in sync with the GitHub release tag
 	GitHubURL = "https://github.com/Sile735/mod_okrane_personal",
 	// Functions pushed here (by hook files) run once, when the first world is initialized,
 	// after Reforged has parsed its own tooltips (same pattern as ::Reforged.QueueBucket.FirstWorldInit)
