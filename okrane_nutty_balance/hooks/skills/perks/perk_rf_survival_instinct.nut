@@ -1,16 +1,19 @@
+// Survival Instinct: additionally grants +5 Hitpoints (description in config/strings.nut).
 ::modONB.HooksMod.hook("scripts/skills/perks/perk_rf_survival_instinct", function(q) {
-	
-	q.onAdded = @() function()
-	{		
-	 	local actor = this.getContainer().getActor();
-		actor.setHitpoints(this.Math.floor(actor.getHitpoints() + 5));			
-	}
+	q.m.ONB_HitpointsBonus <- 5;
 
-	q.onUpdate = @() function(_properties)
+	// When the perk is picked, also fill up the new hitpoints
+	q.onAdded = @(__original) { function onAdded()
 	{
-		local bonus = this.getBonus();
-		_properties.MeleeDefense += bonus;
-		_properties.RangedDefense += bonus;		
-		_properties.Hitpoints += 5;	
-	}
+		__original();
+		local actor = this.getContainer().getActor();
+		actor.setHitpoints(actor.getHitpoints() + this.m.ONB_HitpointsBonus);
+	}}.onAdded;
+
+	// Keeps Reforged's defense bonus
+	q.onUpdate = @(__original) { function onUpdate( _properties )
+	{
+		__original(_properties);
+		_properties.Hitpoints += this.m.ONB_HitpointsBonus;
+	}}.onUpdate;
 });

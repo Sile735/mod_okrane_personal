@@ -1,6 +1,5 @@
-local gt = this.getroottable();
-
-gt.Const.AttributesLevelUp[gt.Const.Attributes.Hitpoints] = {
-	Min = 3, 
+// Hitpoints gained per level-up: 3-5 (vanilla 2-4).
+::Const.AttributesLevelUp[::Const.Attributes.Hitpoints] = {
+	Min = 3,
 	Max = 5
 };

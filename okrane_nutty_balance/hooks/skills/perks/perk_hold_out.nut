@@ -1,21 +1,22 @@
+// Hold Out ("Resilient"): additionally grants +5 Hitpoints and, for player characters,
+// immunity to being netted, webbed or rooted (description in config/strings.nut).
 ::modONB.HooksMod.hook("scripts/skills/perks/perk_hold_out", function(q) {
-	
-	q.onAdded = @() function()
-	{		
-	 	local actor = this.getContainer().getActor();
-		actor.setHitpoints(this.Math.floor(actor.getHitpoints() + 5));			
-	}
+	q.m.ONB_HitpointsBonus <- 5;
 
-	q.onUpdate = @() function(_properties)
-	{		
-
+	// When the perk is picked, also fill up the new hitpoints
+	q.onAdded = @(__original) { function onAdded()
+	{
+		__original();
 		local actor = this.getContainer().getActor();
-		
-		_properties.Hitpoints += 5;	
-		_properties.NegativeStatusEffectDuration += -5;		
-	 	if (actor.isPlayerControlled()){
-	 		_properties.IsImmuneToRoot = true;
-	 	}
-	}
-	
-}); 
+		actor.setHitpoints(actor.getHitpoints() + this.m.ONB_HitpointsBonus);
+	}}.onAdded;
+
+	// Keeps vanilla (shorter negative effects) and Reforged (bleeding halved)
+	q.onUpdate = @(__original) { function onUpdate( _properties )
+	{
+		__original(_properties);
+		_properties.Hitpoints += this.m.ONB_HitpointsBonus;
+		if (this.getContainer().getActor().isPlayerControlled())
+			_properties.IsImmuneToRoot = true;
+	}}.onUpdate;
+});

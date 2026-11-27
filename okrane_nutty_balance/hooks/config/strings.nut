@@ -1,3 +1,5 @@
+// Reworked perk descriptions (UPD format).
+// ID = perk ID, Key = key in ::Const.Strings.PerkDescription, Description = UPD description.
 local tooltip_map = {
 	"quick_hands" : {
 		ID = "perk.quick_hands",
@@ -22,7 +24,7 @@ local tooltip_map = {
 				Description = [
 					"Once per battle, upon receiving a killing blow, survive instead with a few [Hitpoints|Concept.Hitpoints] left and have all damage over time effects (e.g. [bleeding|Skill+bleeding_effect], [poisoned|Skill+spider_poison_effect]) cured.",
 					"Upon triggering, gain [Heightened Reflexes|Skill+nine_lives_effect] until the start of your next [turn.|Concept.Turn]",
-					"Permanently gain 10 [Hitpoints|Concept.Hitpoints]"
+					"Permanently gain " + ::MSU.Text.colorPositive("10") + " [Hitpoints|Concept.Hitpoints]"
 				]
 			}]
 		})
@@ -43,7 +45,7 @@ local tooltip_map = {
 	},
 	"surv_inst" : {
 		ID = "perk.rf_survival_instinct",
-		Key = "Survival Instinct",
+		Key = "RF_SurvivalInstinct",
 		Description = ::UPD.getDescription({
 			Fluff = "Your will to live is strong!",
 			Effects = [{
@@ -51,7 +53,7 @@ local tooltip_map = {
 				Description = [
 					"Whenever you are attacked, gain a stacking bonus to [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] of " + ::MSU.Text.colorPositive("+2") + " on a miss and " + ::MSU.Text.colorPositive("+5") + " on a hit. This can stack up to " + ::MSU.Text.colorPositive("5") + " times for misses and up to " + ::MSU.Text.colorPositive("2") + " times for hits.",
 					"At the start of every [turn|Concept.Turn] the bonus is reset except the bonus gained from getting hit which is retained for the remainder of the combat.", 
-					"Permanently gain 5 [Hitpoints|Concept.Hitpoints]"
+					"Permanently gain " + ::MSU.Text.colorPositive("5") + " [Hitpoints|Concept.Hitpoints]"
 				]
 			}]
 		})
@@ -66,16 +68,16 @@ local tooltip_map = {
  				Description = [
 					"Any negative [status effect|Concept.StatusEffect] with a finite duration (e.g. [$ $|Skill+disarmed_effect], [$ $|Skill+charmed_effect]) has its duration reduced to " + ::MSU.Text.colorPositive(1) + " [turn|Concept.Turn].",
 					"[Status effects|Concept.StatusEffect] that have their effects grow weaker over several [turns|Concept.Turn] (e.g. [$ $|Skill+goblin_poison_effect]) are at their weakest state from the start.",
-					"The effects of [$ $|Skill+bleeding_effect] are " + ::MSU.Text.colorPositive("halved") + "."
+					"The effects of [$ $|Skill+bleeding_effect] are " + ::MSU.Text.colorPositive("halved") + ".",
 					"Gain Immunity to [netted,|Skill+net_effect], [webbed,|Skill+web_effect] or [rooted.|Skill+rooted_effect]", 					
-					"Permanently gain 5 [Hitpoints|Concept.Hitpoints]"
+					"Permanently gain " + ::MSU.Text.colorPositive("5") + " [Hitpoints|Concept.Hitpoints]"
 				]
  			}]
 	 	})
 	},
 	"supporter" : {
 		ID = "perk.rf_supporter",
-		Key = "Supporter",
+		Key = "RF_Supporter",
 		Description = ::UPD.getDescription({
 			Fluff = "I\'ve got your back!",
 			Effects = [			
@@ -92,23 +94,11 @@ local tooltip_map = {
 
 };
 
-
-::Reforged.QueueBucket.FirstWorldInit.push(function() {
-
-	::logInfo("adding okrane tooltips");
-	foreach (key, collection in tooltip_map)
+// Applied when the first world is initialized, i.e. after Reforged has set up and parsed its own
+// descriptions (this mod loads after Reforged), so these replace Reforged's texts.
+::modONB.FirstWorldInit.push(function() {
+	foreach (entry in tooltip_map)
 	{
-		::UPD.setDescription(collection.ID, collection.Key, ::Reforged.Mod.Tooltips.parseString(collection.Description));		
+		::UPD.setDescription(entry.ID, entry.Key, ::Reforged.Mod.Tooltips.parseString(entry.Description));
 	}
-	foreach (key, string in ::Const.Strings.PerkDescription)
-	{
-		local parsedString = ::Reforged.Mod.Tooltips.parseString(string);
-		::Const.Strings.PerkDescription[key] = parsedString;
-	}
-
-	foreach (perkDef in ::Const.Perks.LookupMap)
-	{
-		perkDef.Tooltip = ::Reforged.Mod.Tooltips.parseString(perkDef.Tooltip);
-	}
-
 });

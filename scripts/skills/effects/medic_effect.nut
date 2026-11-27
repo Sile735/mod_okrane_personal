@@ -1,6 +1,11 @@
-this.medic_effect <- this.inherit("scripts/skills/skill", {
+// Medic effect (granted by the Medic perk, scripts/skills/perks/perk_rf_medic.nut):
+//  - injuries heal 1 day faster (implemented in okrane_nutty_balance/hooks/injury.nut, which checks this effect's ID)
+//  - +15 hitpoints after each battle, +5 hitpoints at the start of each turn
+this.medic_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		HealingApplied = false
+		HealingApplied = false,	// prevents healing twice after the same battle
+		HealAfterBattle = 15,
+		HealPerTurn = 5
 	},
 	function create()
 	{
@@ -14,7 +19,6 @@ this.medic_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = false;
 		this.m.IsStacking = false;
-		::logInfo("creating medic effect");
 	}
 
 	function getDescription()
@@ -39,19 +43,19 @@ this.medic_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "Injuries heal [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] day faster"
+				text = "Injuries heal " + ::MSU.Text.colorPositive(1) + " day faster"
 			},
 			{
-				id = 11,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "Recovers [color=" + this.Const.UI.Color.PositiveValue + "]15[/color] Hitpoints after each battle"
+				text = "Recovers " + ::MSU.Text.colorPositive(this.m.HealAfterBattle) + " Hitpoints after each battle"
 			},
 			{
-				id = 11,
+				id = 13,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "Recovers [color=" + this.Const.UI.Color.PositiveValue + "]5[/color] Hitpoints each turn"
+				text = "Recovers " + ::MSU.Text.colorPositive(this.m.HealPerTurn) + " Hitpoints each turn"
 			}
 		];
 		return ret;
@@ -68,7 +72,7 @@ this.medic_effect <- this.inherit("scripts/skills/skill", {
 
 		if (actor != null && !actor.isNull() && actor.isAlive() && !this.m.HealingApplied)
 		{
-			actor.setHitpoints(this.Math.min(actor.getHitpoints() + 15, actor.getHitpointsMax()));
+			actor.setHitpoints(this.Math.min(actor.getHitpoints() + this.m.HealAfterBattle, actor.getHitpointsMax()));
 			actor.setDirty(true);
 			this.m.HealingApplied = true;
 		}
@@ -78,7 +82,7 @@ this.medic_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-		local healthAdded = this.Math.min(healthMissing, 5);
+		local healthAdded = ::Math.min(healthMissing, this.m.HealPerTurn);
 
 		if (healthAdded <= 0)
 		{

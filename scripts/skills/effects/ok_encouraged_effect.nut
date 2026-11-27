@@ -1,9 +1,11 @@
+// Encouraged (applied by the reworked Encourage skill, okrane_nutty_balance/hooks/skills/actives/rf_encourage_skill.nut):
+// +3 Action Points during the turn after being encouraged. The skill stays on the character and is
+// toggled with IsInEffect, so encouraging the same character again just re-activates it.
 this.ok_encouraged_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		BonusActionPoints = 3,		
-		ActionPointCostPenalty = 2
-		IsInEffect = false,
-		IsStartingTurn = false
+		BonusActionPoints = 3,
+		IsInEffect = false,		// active until the end of the encouraged character's next turn
+		IsStartingTurn = false	// set at turn start so onUpdate refills the AP including the bonus
 	},
 	function create()
 	{
@@ -58,7 +60,7 @@ this.ok_encouraged_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsStartingTurn = true;
 		if (this.m.IsInEffect){
 			this.spawnIcon("rf_inspiring_presence_buff_effect", this.getContainer().getActor().getTile());			
-			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, this.getContainer().getActor().getPos());
+			::Sound.play(::MSU.Array.rand(this.m.SoundOnUse), ::Const.Sound.Volume.Skill * this.m.SoundVolume, this.getContainer().getActor().getPos());
 		}
 	}
 
